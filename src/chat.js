@@ -1,21 +1,17 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import faker from 'faker'
+import './assets/styles/style.scss'
+import Messages from './messages'
+import Users from './users'
 
 class Chat extends Component {
     render() {
-        const rndUsername = `@${faker.internet.userName().toLowerCase()}`
         return (
-            <div>
-                <h3>Chat</h3>
-                <button onClick={ () => this.props.addNewUser(rndUsername) }>
-                    add new user
-                </button>
-                <hr/>
-                {this.props.users.map(u => {
-                    return <p key={u}>{u}</p>
-                })}
-            </div>
+            <main className="main-wrapper">
+                <Messages />
+                <Users users={this.props.users} addNewUser={this.props.addNewUser}/>
+            </main>
+
         )
     }
 }
